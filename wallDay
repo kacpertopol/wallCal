@@ -1,0 +1,44 @@
+#!/bin/bash
+
+#############################################
+#                                           #
+#             DESCRIPTION                   #
+#                                           #
+#############################################
+
+# Scan for the day's events.
+# Show 
+#  - a timetable
+#  - list of important events from 
+#    the following seven days
+#  - a todo list
+# on the wallpaper using `feh`.
+
+#############################################
+#                                           #
+#            END DESCRIPTION                #
+#                                           #
+#############################################
+
+#############################################
+#                                           #
+#             CONFIGURATION                 #
+#                                           #
+#############################################
+
+# resolution for timetable in minutes:
+RES=10
+
+# time to search for important events, in days:
+ALARM=7
+
+#############################################
+#                                           #
+#           END CONFIGURATION               #
+#                                           #
+#############################################
+
+# script directory:
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+"$SCRIPT_DIR/betterCalendar" --resolution "$RES" --alarm "$ALARM" | "$SCRIPT_DIR/wallPipe"

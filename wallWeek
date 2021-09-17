@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#############################################
+#                                           #
+#             DESCRIPTION                   #
+#                                           #
+#############################################
+
+# Scan seven days starting with the current
+# day.
+# Show 
+#  - a timetable for each day
+# on the wallpaper using `feh`.
+
+#############################################
+#                                           #
+#            END DESCRIPTION                #
+#                                           #
+#############################################
+
+#############################################
+#                                           #
+#             CONFIGURATION                 #
+#                                           #
+#############################################
+
+# resolution for timetable in minutes:
+RES=10
+
+#############################################
+#                                           #
+#           END CONFIGURATION               #
+#                                           #
+#############################################
+
+# script directory:
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+sDay=$(date -I)
+eDay=$(date -I -d "$sDay + 7 day")
+
+cDay="$sDay"
+
+{
+	while [ "$cDay" != "$eDay" ]
+	do
+		"$SCRIPT_DIR/betterCalendar" -d "$cDay" -t -r "$RES"
+		cDay=$(date -I -d "$cDay + 1 day")
+	done
+} | "$SCRIPT_DIR/wallPipe"

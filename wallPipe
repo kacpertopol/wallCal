@@ -1,0 +1,59 @@
+#!/bin/bash
+
+#############################################
+#                                           #
+#             DESCRIPTION                   #
+#                                           #
+#############################################
+
+# Takes stdin and shows the text
+# on the wallpaper using `feh`.
+
+#############################################
+#                                           #
+#            END DESCRIPTION                #
+#                                           #
+#############################################
+
+#############################################
+#                                           #
+#             CONFIGURATION                 #
+#                                           #
+#############################################
+
+# font, for a list of available fonts run
+# $ convert -list fonts
+FONT="DejaVu-Sans-Mono"
+
+# resolution for the text image,
+# this will be trimmed and the
+# actual size will be smaller:
+RES="2000x2000"
+
+# size of empty border around the text in px:
+BORDER=128
+
+#############################################
+#                                           #
+#           END CONFIGURATION               #
+#                                           #
+#############################################
+
+# script directory:
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+# file for the text:
+TEMP_TEXT="$SCRIPT_DIR/.temp_text"
+
+# files for the images:
+TEMP_IMG="$SCRIPT_DIR/.temp_img.png"
+TEMP_IMG_TRIM="$SCRIPT_DIR/.temp_img_trim.png"
+
+cat > "$TEMP_TEXT"
+convert -size "$RES" xc:black -font "$FONT" -pointsize 18 -fill white -annotate +15+15 "@$TEMP_TEXT" "$TEMP_IMG"
+
+convert -trim -bordercolor black -border "$BORDER" "$TEMP_IMG" "$TEMP_IMG_TRIM"
+
+feh --image-bg black --bg-max "$TEMP_IMG_TRIM"
+
+

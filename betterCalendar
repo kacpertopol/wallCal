@@ -1,0 +1,38 @@
+#!/usr/bin/env python
+
+import argparse 
+import os
+import datetime
+import sys
+import datetime
+
+from betterCal import *
+
+if(__name__ == "__main__"):
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    parser = argparse.ArgumentParser(description = "Simple calendar program.")
+    parser.add_argument("-d" , "--day" , help = "Day for calendar output, YYYY-mm-dd, by default this is the current date.")
+    parser.add_argument("-c" , "--calendar" , help = "Path to calendar file, by default this is the -cal- file in the script directory.")
+    parser.add_argument("-o" , "--onlydetails" , action = "store_true" , help = "If set event details will be printed in text form.")
+    parser.add_argument("-r" , "--resolution" , help = "Resolution of table, by default this is 30 minutes.")
+    parser.add_argument("-a" , "--alarm" , help = "Number of days to print TODO events, by default 0.")
+    parser.add_argument("-t" , "--todo" , action = "store_false" , help = "If set the to do section will not be shown.")
+    args = parser.parse_args()    
+
+    calPath = os.path.join(script_dir , "cal")
+    if(args.calendar != None):
+        calPath = args.calendar
+
+    calDay = datetime.datetime.now()
+    if(args.day != None):
+        calDay = datetime.datetime.strptime(args.day , '%Y-%m-%d')
+
+    calResolution = 30
+    if(args.resolution != None):
+        calResolution = int(args.resolution)
+
+    calAlarm = 0
+    if(args.alarm != None):
+        calAlarm = int(args.alarm)
+
+    printDayEvents(calPath , calDay , onlyDetails = args.onlydetails , resolution = calResolution , alarm = calAlarm , show_todo = args.todo)

@@ -1,0 +1,96 @@
+This is the default calendar file.
+
+Calendar events start with a '#' followed by an event time specification.
+Specification examples:
+
+	Y2021                           - event in given year
+	M03                             - event in given month
+	D05                             - event in given day
+	h04                             - event in given hour
+	m08                             - event in given minute
+	W05                             - event taking place during the fifth week of the year
+	w3                              - event taking place on a Wednesday
+	>2021-03-05                     - event after date
+	<2021-03-05                     - event before date
+	>=2021-03-05                    - event after or on date
+	<=2021-03-05                    - event before or on date
+	>21:22                          - event after time
+	<21:22                          - event before time
+	>=21:22                         - event after time or on this time
+	<=21:22                         - event before time or on this time
+
+Specifications can be joined using ( &) and ( |) that
+apply the and or operator to specifications inside.
+Carefull, spaces must be present around the brackets and
+before $,|. Some examples:
+
+	( ( w3 H14 &) ( w7 H17 &) |)    - event at 14 hours on Wednesday
+									  or 17 hours on Sunday
+	( ( w1 w2 w3 |) H14 &)          - event taking place on 
+									  on Monday or Tuesday or Wednesday
+									  at 14 hours.
+
+The first line after the time specification is the title of the event.
+The event type can be placed in the title following a colon ':'.
+
+	ALARM                           - events with this type will appear in the 
+                                      "important events" section
+	TODO                            - events with this type will not appear
+                                      in the timetable but will appear
+                                      in the daily "things to do" section
+
+This can be followed by a number of lines of text - this will be 
+interpreted as the event description. The double '##' terminates the event.
+
+Carefull, spaces must be inserted between all elements of the specification.
+Some examples of calendar events are below:
+
+# ( >=07:00 <08:00 &)
+breakfast
+##
+
+# ( >=09:00 <10:00 &)
+second breakfast
+##
+
+# ( >=11:00 <12:00 &)
+elevenses
+##
+
+# ( >=13:00 <14:30 &)
+luncheon
+##
+
+# ( >=15:00 <16:00 &)
+afternoon tea
+##
+
+--have to slim down, skipping dinner
+--# ( >=18:00 <19:00 &)
+--dinner
+--##
+
+# ( >=21:00 <22:00 &)
+supper
+##
+
+# true
+destroy the ring : TODO
+##
+
+# ( >=16:30 <17:30 ( w1 w3 w5 |) &)
+book club
+Monday, Wednesday, Friday book club
+meeting.
+##
+
+# ( >=16:30 <17:30 w7 &)
+talk with gandalf : ALARM
+Remember to bring pipe.
+##
+
+--done, wegetables are getting expensive
+--# true
+--buy cabbage : TODO
+--##
+
