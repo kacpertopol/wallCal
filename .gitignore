@@ -130,3 +130,7 @@ dmypy.json
 
 # Other
 cal
+.temp_img.png
+.temp_img_trim.png
+.temp_text
+
