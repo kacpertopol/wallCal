@@ -17,6 +17,15 @@ on the following programs being available:
 - `feh` (<https://feh.finalrewind.org/>)
 - `convert` (part of ImageMagick <https://imagemagick.org/>)
 
+# calendar files
+
+The example calendar file `cal_example` 
+contains a description of the syntax
+togather with a couple of examples.
+
+Copy this file to `cal` and edit it
+for the scripts to work.
+
 # bash scripts
 
 Configuration options are available 
