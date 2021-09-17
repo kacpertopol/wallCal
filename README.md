@@ -22,6 +22,17 @@ on the following programms being available:
 Configuration options are available 
 in `CONFIGURATION` sections of each script.
 
+CAREFULL: the first thing you might want
+to change is the `FONT` in `wallPipe`.
+By default it is `"DejaVu-Sans-Mono"`
+because it has good box dwaring characters.
+The font should be monospaced.
+To list all fonts available run:
+
+```
+$convert -list font
+```
+
 ## `wallDay`
 
 USAGE: 
