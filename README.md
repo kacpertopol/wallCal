@@ -53,6 +53,8 @@ of the syntax for calendar events
 is described at the beginning of
 this file.
 
+![](day.png)
+
 The script shows:
 
   - a timetable
