@@ -4,7 +4,7 @@ Have your calendar appear as the wallpaper.
 
 ![](day.png)
 
-# disclamer 
+# disclaimer 
 
 Use at your own risk. Don't blame me if you miss a meeting :-)
 Please report problems and feature requests.
@@ -12,7 +12,7 @@ Please report problems and feature requests.
 # dependencies
 
 The scripts in this repository depend 
-on the following programms being available:
+on the following programs being available:
 
 - `feh` (<https://feh.finalrewind.org/>)
 - `convert` (part of ImageMagick <https://imagemagick.org/>)
@@ -22,11 +22,11 @@ on the following programms being available:
 Configuration options are available 
 in `CONFIGURATION` sections of each script.
 
-CAREFULL: the first thing you might want
+CAREFUL: the first thing you might want
 to change is the `FONT` in `wallPipe`.
 By default it is `"DejaVu-Sans-Mono"`
-because it has box dwaring characters.
-The font should be monospaced.
+because it has box drawing characters.
+The font should be mono spaced.
 To list all fonts available run:
 
 ```
@@ -70,7 +70,7 @@ USAGE:
 $./wallWeek
 ```
 
-Scan seven days, strting with the current day,
+Scan seven days, starting with the current day,
 for the day's events using the
 calendar file `cal`. A description
 of the syntax for calendar events
