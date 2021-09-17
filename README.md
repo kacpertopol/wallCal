@@ -25,7 +25,7 @@ contains a description of the syntax
 togather with a couple of examples.
 
 I suggest copying this file to `cal` and 
-making editing it to add your events.
+editing it to add your events.
 All the scripts described below need 
 the file `cal` to be available.
 
