@@ -9,7 +9,8 @@ Have your calendar appear as the wallpaper.
 Use at your own risk. Don't blame me if you miss a meeting :-)
 
 Some parts of the scripts were bogged togather from various examples online.
-Please report problems and let me know if there are some feature requests.
+Please report problems using GITHUBs issue tracking system. 
+Additionally please let me know if there are some feature requests.
 
 # dependencies
 
