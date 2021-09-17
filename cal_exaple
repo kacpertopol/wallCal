@@ -18,7 +18,7 @@ Specification examples:
 	<21:22                          - event before time
 	>=21:22                         - event after time or on this time
 	<=21:22                         - event before time or on this time
-    true                            - event taking place constantly
+	true                            - event taking place constantly
 
 Specifications can be joined using ( &) and ( |) that
 apply the and or operator to specifications inside.
