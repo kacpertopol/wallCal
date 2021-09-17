@@ -8,7 +8,8 @@ Have your calendar appear as the wallpaper.
 
 Use at your own risk. Don't blame me if you miss a meeting :-)
 
-Please report problems and let me know if there are some feature requests.
+Some parts of the scripts were bogged togather from various examples online so
+please report problems and let me know if there are some feature requests.
 
 # dependencies
 
