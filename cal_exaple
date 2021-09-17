@@ -3,40 +3,40 @@ This is the default calendar file.
 Calendar events start with a '#' followed by an event time specification.
 Specification examples:
 
-	Y2021                           - event in given year
-	M03                             - event in given month
-	D05                             - event in given day
-	h04                             - event in given hour
-	m08                             - event in given minute
-	W05                             - event taking place during the fifth week of the year
-	w3                              - event taking place on a Wednesday
-	>2021-03-05                     - event after date
-	<2021-03-05                     - event before date
-	>=2021-03-05                    - event after or on date
-	<=2021-03-05                    - event before or on date
-	>21:22                          - event after time
-	<21:22                          - event before time
-	>=21:22                         - event after time or on this time
-	<=21:22                         - event before time or on this time
-	true                            - event taking place constantly
+    Y2021                           - event in given year
+    M03                             - event in given month
+    D05                             - event in given day
+    h04                             - event in given hour
+    m08                             - event in given minute
+    W05                             - event taking place during the fifth week of the year
+    w3                              - event taking place on a Wednesday
+    >2021-03-05                     - event after date
+    <2021-03-05                     - event before date
+    >=2021-03-05                    - event after or on date
+    <=2021-03-05                    - event before or on date
+    >21:22                          - event after time
+    <21:22                          - event before time
+    >=21:22                         - event after time or on this time
+    <=21:22                         - event before time or on this time
+    true                            - event taking place constantly
 
 Specifications can be joined using ( &) and ( |) that
 apply the and or operator to specifications inside.
 Carefull, spaces must be present around the brackets and
 before $,|. Some examples:
 
-	( ( w3 H14 &) ( w7 H17 &) |)    - event at 14 hours on Wednesday
-									  or 17 hours on Sunday
-	( ( w1 w2 w3 |) H14 &)          - event taking place on 
-									  on Monday or Tuesday or Wednesday
-									  at 14 hours.
+    ( ( w3 H14 &) ( w7 H17 &) |)    - event at 14 hours on Wednesday
+                                      or 17 hours on Sunday
+    ( ( w1 w2 w3 |) H14 &)          - event taking place on 
+                                      on Monday or Tuesday or Wednesday
+                                      at 14 hours.
 
 The first line after the time specification is the title of the event.
 The event type can be placed in the title following a colon ':'.
 
-	ALARM                           - events with this type will appear in the 
+    ALARM                           - events with this type will appear in the 
                                       "important events" section
-	TODO                            - events with this type will not appear
+    TODO                            - events with this type will not appear
                                       in the timetable but will appear
                                       in the daily "things to do" section
 
