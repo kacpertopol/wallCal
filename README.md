@@ -55,7 +55,10 @@ USAGE:
 $./wallDay
 ```
 
-or with the `PATH` variable set appropriately:
+or with the `PATH` variable set appropriately
+(using a symbolic link wont work because
+the scripts look for files relative to their
+location):
 
 ```
 $wallDay
