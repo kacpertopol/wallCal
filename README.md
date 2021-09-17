@@ -7,7 +7,8 @@ Have your calendar appear as the wallpaper.
 # disclaimer 
 
 Use at your own risk. Don't blame me if you miss a meeting :-)
-Please report problems and feature requests.
+
+Please report problems and let me know if there are some feature requests.
 
 # dependencies
 
@@ -23,8 +24,10 @@ The example calendar file `cal_example`
 contains a description of the syntax
 togather with a couple of examples.
 
-Copy this file to `cal` and edit it
-for the scripts to work.
+I suggest copying this file to `cal` and 
+making editing it to add your events.
+All the scripts described below need 
+the file `cal` to be available.
 
 # bash scripts
 
