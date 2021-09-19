@@ -31,6 +31,8 @@ class calConfiguration:
             self.truePattern = re.compile("true")
             self.andPattern = re.compile("&\)")
             self.orPattern = re.compile("\|\)")
+            self.notAndPattern = re.compile("&!\)")
+            self.notOrPattern = re.compile("\|!\)")
             self.stopPattern = re.compile("\(")
             self.gtDatePattern = re.compile(">\d\d\d\d-\d\d-\d\d") 
             self.ltDatePattern = re.compile("<\d\d\d\d-\d\d-\d\d") 
@@ -181,6 +183,32 @@ def orFunction(lst):
             break
     return val
 
+def notAndFunction(lst):
+    """
+    [ <boolean> ] -> <boolean>
+
+    Applies -and- between boolean values in list.
+    """
+    val = True
+    for v in lst:
+        val = v and val
+        if(val == False):
+            break
+    return not val
+
+def notOrFunction(lst):
+    """
+    [ <boolean> ] -> <boolean>
+
+    Applies -or- between boolean valies in list.
+    """
+    val = False
+    for v in lst:
+        val = v or val
+        if(val == True):
+            break
+    return not val
+
 def getInEventFunction(string , where = None):
     """
     <string> -> ( <date time> -> <boolean>)
@@ -213,10 +241,10 @@ def getInEventFunction(string , where = None):
     >=21:22                         - event after time or on this time
     <=21:22                         - event before time or on this time
 
-    Specifications can be joined using ( &) and ( |) that
-    take aply the and, or operator to specifications inside.
+    Specifications can be joined using ( &), ( |), ( &!), ( |!) that
+    take aply the `and`, `or`, `not and` or `not or` operator to specifications inside.
     Carefull, spaces must be present around the brackets and
-    before $,|. Some examples:
+    before &,|. Some examples:
 
     ( ( w3 H14 &) ( w7 H17 &) |)    - event at 14 hours on Wednesday
                                       or 17 hours on Sunday
@@ -247,6 +275,10 @@ def getInEventFunction(string , where = None):
             if(data.orPattern.match(el)):
                 ok = True
             if(data.stopPattern.match(el)):
+                ok = True
+            if(data.notAndPattern.match(el)):
+                ok = True
+            if(data.notOrPattern.match(el)):
                 ok = True
             if(not ok):
                 print("-----------------")
@@ -301,6 +333,44 @@ def getInEventFunction(string , where = None):
                     print("-----------------")
                     sys.exit(1)
                 i = j
+            elif(isinstance(stack[i] , str) and data.notAndPattern.match(stack[i])):
+                j = i - 1
+                while(j >= 0):
+                    if(isinstance(stack[j] , str) and data.stopPattern.match(stack[j])):
+                        break
+                    j -= 1
+                stack = stack[0 : j] + [notAndFunction(stack[j + 1 : i])] + stack[i + 1 :]
+                if(j < 0):
+                    print("-----------------")
+                    print("Wrong syntax in :")
+                    print(string)
+                    if(where):
+                        print("from :")
+                        print(str(where))
+                    print("No closing bracket in string.")
+                    print("Exiting.")
+                    print("-----------------")
+                    sys.exit(1)
+                i = j
+            elif(isinstance(stack[i] , str) and data.notOrPattern.match(stack[i])):
+                j = i - 1
+                while(j >= 0):
+                    if(isinstance(stack[j] , str) and data.stopPattern.match(stack[j])):
+                        break
+                    j -= 1
+                stack = stack[0 : j] + [notOrFunction(stack[j + 1 : i])] + stack[i + 1 :]
+                if(j < 0):
+                    print("-----------------")
+                    print("Wrong syntax in :")
+                    print(string)
+                    if(where):
+                        print("from :")
+                        print(str(where))
+                    print("No closing bracket in string.")
+                    print("Exiting.")
+                    print("-----------------")
+                    sys.exit(1)
+                i = j               
             i += 1
         if(len(stack) != 1):
             print("-----------------")
