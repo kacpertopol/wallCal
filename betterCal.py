@@ -464,30 +464,34 @@ def printDayEvents(path , day , onlyDetails = False , resolution = 30 , alarm = 
                     currentDate += delta
             
     if(onlyDetails):
-        todos = []
         sys.stdout.write("# EVENTS ON " + str(start.year) + "-" + str(start.month).zfill(2) + "-" + str(start.day).zfill(2) + "\n")
+        todos = []
         for ev in events:
+            isTODO = False
+            tle = ev[1]
+            if(":" in tle):
+                tle = tle.split(":")[0].strip()
             if((":" in ev[1]) and ("TODO" == ev[1].split(":")[1].strip())):
-                tle = ev[1].split(":")[0].strip()
-                todos.append(tle)
-            else:
-                tms = ""
-                prvIn = False
-                curIn = None
-                currentDate = start
-                while currentDate <= end:
-                    if(ev[0](currentDate)):
-                        curIn = True
-                    else:
-                        curIn = False
-                    if((not prvIn) and curIn):
-                        tms += str(currentDate.hour).zfill(2) + ":" + str(currentDate.minute).zfill(2) + "-"
-                    if(prvIn and (not curIn)):
-                        tms += str(currentDate.hour).zfill(2) + ":" + str(currentDate.minute).zfill(2) + ""
-                    prvIn = curIn
-                    currentDate += delta
-                if(tms != ""): 
-                    #print(ev , tms)
+                isTODO = True
+            tms = ""
+            prvIn = False
+            curIn = None
+            currentDate = start
+            while currentDate <= end:
+                if(ev[0](currentDate)):
+                    curIn = True
+                else:
+                    curIn = False
+                if((not prvIn) and curIn):
+                    tms += str(currentDate.hour).zfill(2) + ":" + str(currentDate.minute).zfill(2) + "-"
+                if(prvIn and (not curIn)):
+                    tms += str(currentDate.hour).zfill(2) + ":" + str(currentDate.minute).zfill(2) + ""
+                prvIn = curIn
+                currentDate += delta
+            if(tms != ""): 
+                if(isTODO):
+                    todos.append(tle)
+                else:
                     sys.stdout.write("\n")
                     tle = ev[1]
                     if(":" in tle):
@@ -548,37 +552,38 @@ def printDayEvents(path , day , onlyDetails = False , resolution = 30 , alarm = 
 
         todos = []
         for ev in events:
+            isTODO = False
+            tle = ev[1]
+            if(":" in tle):
+                tle = tle.split(":")[0].strip()
             if((":" in ev[1]) and ("TODO" == ev[1].split(":")[1].strip())):
-                tle = ev[1].split(":")[0].strip()
-                todos.append(tle)
-            else:
-                #sys.stdout.write(" ")
-                lne = " "
-                notEmptyDay = False
-                currentDateL = start
-                while currentDateL < end:
-                    isIn = False
-                    currentDate = currentDateL
-                    while currentDate < currentDateL + deltaL:
-                        if(ev[0](currentDate)):
-                            isIn = True
-                        currentDate += delta
-                    if(isIn):
-                        #sys.stdout.write(u'\u2588')
-                        notEmptyDay = True
-                        lne += u'\u2588'
-                    else:
-                        #sys.stdout.write(u'\u258f')
-                        lne += u'\u258f'
-                    currentDateL += deltaL
-                tle = ev[1]
-                if(":" in tle):
-                    tle = tle.split(":")[0].strip()
-                #sys.stdout.write(u'\u258f' + tle)
-                lne += u'\u258f' + tle
-                #sys.stdout.write("\n")
-                lne += "\n"
-                if(notEmptyDay):
+                isTODO = True
+            lne = " "
+            notEmptyDay = False
+            currentDateL = start
+            while currentDateL < end:
+                isIn = False
+                currentDate = currentDateL
+                while currentDate < currentDateL + deltaL:
+                    if(ev[0](currentDate)):
+                        isIn = True
+                    currentDate += delta
+                if(isIn):
+                    #sys.stdout.write(u'\u2588')
+                    notEmptyDay = True
+                    lne += u'\u2588'
+                else:
+                    #sys.stdout.write(u'\u258f')
+                    lne += u'\u258f'
+                currentDateL += deltaL
+            #sys.stdout.write(u'\u258f' + tle)
+            lne += u'\u258f' + tle
+            #sys.stdout.write("\n")
+            lne += "\n"
+            if(notEmptyDay):
+                if(isTODO):
+                    todos.append(tle)
+                else:
                     sys.stdout.write(lne)
         if(alarm != 0):
             sys.stdout.write("\n")

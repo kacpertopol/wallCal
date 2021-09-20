@@ -38,7 +38,9 @@ The event type can be placed in the title following a colon ':'.
                                       "important events" section
     TODO                            - events with this type will not appear
                                       in the timetable but will appear
-                                      in the daily "things to do" section
+                                      in the daily "things to do" section,
+                                      CAREFULL: THE TIME SPECIFICATION STILL APPLIES
+                                      (see for example "true") 
 
 This can be followed by a number of lines of text - this will be 
 interpreted as the event description. The double '##' terminates the event.
